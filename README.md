@@ -28,7 +28,7 @@ was built from source or installed from official packages, run:
 
 To install the package for Python directly, run:
 
-    pip install elementary-vectors
+    pip install sign-vectors
 
 ### Local install from source
 
