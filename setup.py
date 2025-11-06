@@ -9,7 +9,7 @@ def readfile(filename):
 
 setup(
     name="sign_vectors",
-    version="1.0",
+    version="1.1",
     description="a SageMath package to work with sign vectors, oriented matroids and chirotopes",
     long_description=readfile("README.md"),
     long_description_content_type="text/markdown",
