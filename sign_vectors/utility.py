@@ -1,4 +1,7 @@
-"""Utility functions and other useful functions for working with oriented matroids"""
+"""
+Utility functions
+=================
+"""
 
 #############################################################################
 #  Copyright (C) 2025                                                       #

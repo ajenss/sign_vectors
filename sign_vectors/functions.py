@@ -1,4 +1,7 @@
-r"""Functions for working with oriented matroids"""
+r"""
+Functions for sets of sign vectors
+==================================
+"""
 
 #############################################################################
 #  Copyright (C) 2025                                                       #
