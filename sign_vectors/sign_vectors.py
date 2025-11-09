@@ -2,19 +2,16 @@ r"""
 Sign vectors
 ============
 
-First, we load the functions from the package::
-
-    sage: from sign_vectors import *
-
 There are several ways to define sign vectors::
 
-    sage: sign_vector([1, 0, -1, 1])
-    (+0-+)
-    sage: x = vector([5, 2/5, -1, 0])
-    sage: sign_vector(x)
-    (++-0)
+    sage: from sign_vectors import *
     sage: sign_vector('++-+-00-')
     (++-+-00-)
+    sage: sign_vector([1, 0, -1, 1])
+    (+0-+)
+    sage: v = vector([5, 2/5, -1, 0])
+    sage: sign_vector(v)
+    (++-0)
 
 We construct the zero sign vector of a given length::
 
@@ -38,7 +35,7 @@ There are different notions of support::
     sage: X.negative_support()
     [6, 7]
 
-Next, we define two sign vectors::
+Next, we define two sign vectors and compose them::
 
     sage: X = sign_vector([-1, 0, 1, -1, 0])
     sage: X
@@ -46,9 +43,6 @@ Next, we define two sign vectors::
     sage: Y = sign_vector([0, 1, 0, 1, 0])
     sage: Y
     (0+0+0)
-
-We compose them::
-
     sage: X.compose(Y)
     (-++-0)
     sage: Y.compose(X)

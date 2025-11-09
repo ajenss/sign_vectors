@@ -1,4 +1,9 @@
-r"""Chirotopes: An auxiliary module for oriented matroids."""
+r"""
+Chirotopes (auxiliary module for oriented matroids)
+
+Chirotopes
+==========
+"""
 
 #############################################################################
 #  Copyright (C) 2025                                                       #
