@@ -5,7 +5,7 @@ Sign vectors
 There are several ways to define sign vectors::
 
     sage: from sign_vectors import *
-    sage: sign_vector('+0-+-0')
+    sage: sign_vector("+0-+-0")
     (+0-+-0)
     sage: sign_vector([1, 0, -1, 1])
     (+0-+)
@@ -25,7 +25,7 @@ It is also possible to generate random sign vectors::
 
 There are different notions of support::
 
-    sage: X = sign_vector('+++000--')
+    sage: X = sign_vector("+++000--")
     sage: X.support()
     [0, 1, 2, 6, 7]
     sage: X.zero_support()
@@ -37,12 +37,8 @@ There are different notions of support::
 
 Next, we define two sign vectors and compose them::
 
-    sage: X = sign_vector([-1, 0, 1, -1, 0])
-    sage: X
-    (-0+-0)
-    sage: Y = sign_vector([0, 1, 0, 1, 0])
-    sage: Y
-    (0+0+0)
+    sage: X = sign_vector("-0+-0")
+    sage: Y = sign_vector("0+0+0")
     sage: X.compose(Y)
     (-++-0)
     sage: Y.compose(X)
@@ -93,7 +89,7 @@ def sign_vector(iterable: list[int] | str | SignVector) -> SignVector:
         - an iterable (e.g. a list or vector) of real values.
           Variables can also occur.
 
-        - a string consisting of ``"-"``, ``"+"``, ``"0"``. Other characters are treated as ``"0"``.
+        - a string consisting of ``-``, ``+``, ``0``. Other characters are treated as ``0``.
 
     OUTPUT:
 
@@ -112,12 +108,12 @@ def sign_vector(iterable: list[int] | str | SignVector) -> SignVector:
 
         sage: sign_vector("00--")
         (00--)
-        sage: sign_vector('++-+-00-')
+        sage: sign_vector("++-+-00-")
         (++-+-00-)
 
     Variables are supported to some extent::
 
-        sage: var('a')
+        sage: var("a")
         a
         sage: v = vector([1, a, -1])
         sage: sign_vector(v)
@@ -201,7 +197,7 @@ def sign_symbolic(value) -> int:
 
     For symbolic expressions, the sign is determined using assumptions::
 
-        sage: var('a')
+        sage: var("a")
         a
         sage: sign_symbolic(a) # not tested
         ...
@@ -214,7 +210,7 @@ def sign_symbolic(value) -> int:
 
     ::
 
-        sage: var('a, b, c, d')
+        sage: var("a, b, c, d")
         (a, b, c, d)
         sage: assume(a > 0, b > 0, c > 0, d > 0)
         sage: sign_symbolic((a + b)*(c + d) - b*c)
@@ -307,7 +303,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('0+-')
+            sage: X = sign_vector("0+-")
             sage: X
             (0+-)
             sage: X.length()
@@ -322,7 +318,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('0+-')
+            sage: X = sign_vector("0+-")
             sage: X
             (0+-)
             sage: len(X)
@@ -337,7 +333,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-0+-0')
+            sage: X = sign_vector("-0+-0")
             sage: X
             (-0+-0)
             sage: X.support()
@@ -355,7 +351,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-0+-0')
+            sage: X = sign_vector("-0+-0")
             sage: X
             (-0+-0)
             sage: X.zero_support()
@@ -370,7 +366,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-0+-0')
+            sage: X = sign_vector("-0+-0")
             sage: X
             (-0+-0)
             sage: X.positive_support()
@@ -385,7 +381,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-0+-0')
+            sage: X = sign_vector("-0+-0")
             sage: X
             (-0+-0)
             sage: X.negative_support()
@@ -400,7 +396,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('0++-')
+            sage: X = sign_vector("0++-")
             sage: X
             (0++-)
             sage: X[0]
@@ -443,7 +439,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-+00+')
+            sage: X = sign_vector("-+00+")
             sage: X
             (-+00+)
             sage: X.list_from_positions([0, 1, 4])
@@ -466,18 +462,18 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('+00')
+            sage: X = sign_vector("+00")
             sage: X
             (+00)
-            sage: Y = sign_vector('--0')
+            sage: Y = sign_vector("--0")
             sage: Y
             (--0)
             sage: X.compose(Y)
             (+-0)
             sage: Y.compose(X)
             (--0)
-            sage: X = sign_vector('000+++---')
-            sage: Y = sign_vector('0+-0+-0+-')
+            sage: X = sign_vector("000+++---")
+            sage: Y = sign_vector("0+-0+-0+-")
             sage: X.compose(Y)
             (0+-+++---)
         """
@@ -506,10 +502,10 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('+00')
+            sage: X = sign_vector("+00")
             sage: X
             (+00)
-            sage: Y = sign_vector('0-0')
+            sage: Y = sign_vector("0-0")
             sage: Y
             (0-0)
             sage: X.compose_harmonious(Y)
@@ -529,7 +525,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-+00+')
+            sage: X = sign_vector("-+00+")
             sage: X
             (-+00+)
             sage: -1*X
@@ -550,7 +546,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-+00+')
+            sage: X = sign_vector("-+00+")
             sage: X
             (-+00+)
             sage: X*(-1)
@@ -574,7 +570,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-++0+')
+            sage: X = sign_vector("-++0+")
             sage: X
             (-++0+)
             sage: X.flip_signs([0, 2, 3])
@@ -582,7 +578,7 @@ class SignVector(SageObject):
 
         ::
 
-            sage: X = sign_vector('+-0+0')
+            sage: X = sign_vector("+-0+0")
             sage: X
             (+-0+0)
             sage: X.flip_signs([0, 3, 4])
@@ -606,7 +602,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-++0+')
+            sage: X = sign_vector("-++0+")
             sage: X
             (-++0+)
             sage: X.set_to_zero([0, 2, 3])
@@ -614,7 +610,7 @@ class SignVector(SageObject):
 
         ::
 
-            sage: X = sign_vector('+-+0+0')
+            sage: X = sign_vector("+-+0+0")
             sage: X
             (+-+0+0)
             sage: X.set_to_zero([0, 1, 4])
@@ -638,7 +634,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-++0+')
+            sage: X = sign_vector("-++0+")
             sage: X
             (-++0+)
             sage: X.set_to_plus([0, 2, 3])
@@ -646,7 +642,7 @@ class SignVector(SageObject):
 
         ::
 
-            sage: X = sign_vector('+-+0+0')
+            sage: X = sign_vector("+-+0+0")
             sage: X
             (+-+0+0)
             sage: X.set_to_plus([0, 1, 4])
@@ -670,7 +666,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-++0+')
+            sage: X = sign_vector("-++0+")
             sage: X
             (-++0+)
             sage: X.set_to_minus([0, 2, 3])
@@ -678,7 +674,7 @@ class SignVector(SageObject):
 
         ::
 
-            sage: X = sign_vector('+-+0+0')
+            sage: X = sign_vector("+-+0+0")
             sage: X
             (+-+0+0)
             sage: X.set_to_minus([0, 1, 4])
@@ -702,7 +698,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('+0-')
+            sage: X = sign_vector("+0-")
             sage: X
             (+0-)
             sage: X.delete_components([1])
@@ -710,7 +706,7 @@ class SignVector(SageObject):
 
         ::
 
-            sage: X = sign_vector('-+0+0')
+            sage: X = sign_vector("-+0+0")
             sage: X
             (-+0+0)
             sage: X.delete_components([0, 2])
@@ -742,10 +738,10 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('++00-')
+            sage: X = sign_vector("++00-")
             sage: X
             (++00-)
-            sage: Y = sign_vector('+-+++')
+            sage: Y = sign_vector("+-+++")
             sage: Y
             (+-+++)
             sage: X.separating_elements(Y)
@@ -768,16 +764,16 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-+00+')
+            sage: X = sign_vector("-+00+")
             sage: X
             (-+00+)
             sage: X.is_orthogonal_to(X)
             False
-            sage: X.is_orthogonal_to(sign_vector('++000'))
+            sage: X.is_orthogonal_to(sign_vector("++000"))
             True
-            sage: X.is_orthogonal_to(sign_vector('++00+'))
+            sage: X.is_orthogonal_to(sign_vector("++00+"))
             True
-            sage: X.is_orthogonal_to(sign_vector('00++0'))
+            sage: X.is_orthogonal_to(sign_vector("00++0"))
             True
         """
         return not (self._separating_elements(other).isempty() ^ self._connecting_elements(other).isempty())
@@ -802,15 +798,15 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('++00-')
+            sage: X = sign_vector("++00-")
             sage: X
             (++00-)
-            sage: Y = sign_vector('+-+++')
+            sage: Y = sign_vector("+-+++")
             sage: Y
             (+-+++)
             sage: X.is_harmonious_to(Y)
             False
-            sage: sign_vector('0+00').is_harmonious_to(sign_vector('-+0+'))
+            sage: sign_vector("0+00").is_harmonious_to(sign_vector("-+0+"))
             True
             sage: v = vector([1, 2/3, 0, -1, -1])
             sage: X.is_harmonious_to(v)
@@ -834,9 +830,9 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('++00')
-            sage: Y = sign_vector('0+0-')
-            sage: Z = sign_vector('00--')
+            sage: X = sign_vector("++00")
+            sage: Y = sign_vector("0+0-")
+            sage: Z = sign_vector("00--")
             sage: X.disjoint_support(Y)
             False
             sage: Y.disjoint_support(X)
@@ -864,13 +860,13 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-+00+')
+            sage: X = sign_vector("-+00+")
             sage: X
             (-+00+)
-            sage: Y = sign_vector('-++0+')
+            sage: Y = sign_vector("-++0+")
             sage: Y
             (-++0+)
-            sage: Z = sign_vector('-++-+')
+            sage: Z = sign_vector("-++-+")
             sage: Z
             (-++-+)
             sage: X.conforms(Y)
@@ -926,10 +922,10 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-+00+')
+            sage: X = sign_vector("-+00+")
             sage: X
             (-+00+)
-            sage: Y = sign_vector('-++0+')
+            sage: Y = sign_vector("-++0+")
             sage: Y
             (-++0+)
             sage: X <= Y
@@ -937,7 +933,7 @@ class SignVector(SageObject):
 
         We can also use ``<=`` to compare a sign vector with ``0``::
 
-            sage: sign_vector('00--') <= 0
+            sage: sign_vector("00--") <= 0
             True
             sage: sign_vector([1, 1, -1, 0]) <= 0
             False
@@ -963,10 +959,10 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-+00+')
+            sage: X = sign_vector("-+00+")
             sage: X
             (-+00+)
-            sage: Y = sign_vector('-++0+')
+            sage: Y = sign_vector("-++0+")
             sage: Y
             (-++0+)
             sage: X < Y
@@ -974,7 +970,7 @@ class SignVector(SageObject):
 
         We can also use ``<`` to compare a sign vector with ``0``::
 
-            sage: sign_vector('00--') < 0
+            sage: sign_vector("00--") < 0
             True
             sage: sign_vector([1, 1, -1, 0]) < 0
             False
@@ -996,10 +992,10 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-+00+')
+            sage: X = sign_vector("-+00+")
             sage: X
             (-+00+)
-            sage: Y = sign_vector('-++0+')
+            sage: Y = sign_vector("-++0+")
             sage: Y
             (-++0+)
             sage: Y >= X
@@ -1007,7 +1003,7 @@ class SignVector(SageObject):
 
         We can also use ``>=`` to compare a sign vector with ``0``::
 
-            sage: sign_vector('00--') >= 0
+            sage: sign_vector("00--") >= 0
             False
             sage: sign_vector([1, 1, -1, 0]) >= 0
             False
@@ -1033,10 +1029,10 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('-+00+')
+            sage: X = sign_vector("-+00+")
             sage: X
             (-+00+)
-            sage: Y =  sign_vector('-++0+')
+            sage: Y =  sign_vector("-++0+")
             sage: Y
             (-++0+)
             sage: Y > X
@@ -1044,7 +1040,7 @@ class SignVector(SageObject):
 
         We can also use ``>`` to compare a sign vector with ``0``::
 
-            sage: 0 >  sign_vector('00--')
+            sage: 0 >  sign_vector("00--")
             True
             sage: sign_vector([1, 1, -1, 0]) > 0
             False
@@ -1065,7 +1061,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('0+-')
+            sage: X = sign_vector("0+-")
             sage: -X
             (0-+)
         """
@@ -1078,7 +1074,7 @@ class SignVector(SageObject):
         EXAMPLES::
 
             sage: from sign_vectors import *
-            sage: X = sign_vector('0+-')
+            sage: X = sign_vector("0+-")
             sage: X
             (0+-)
             sage: +X
