@@ -118,7 +118,7 @@ def sign_vector(iterable: list[int] | str | SignVector) -> SignVector:
         sage: v = vector([1, a, -1])
         sage: sign_vector(v)
         ...
-        UserWarning: Cannot determine sign of symbolic expression, using ``0`` instead.
+        UserWarning: Cannot determine sign of symbolic expression, using 0 instead.
         (+0-)
         sage: assume(a > 0)
         sage: sign_vector(v)
@@ -201,7 +201,7 @@ def sign_symbolic(value) -> int:
         a
         sage: sign_symbolic(a) # not tested
         ...
-        UserWarning: Cannot determine sign of symbolic expression, using ``0`` instead.
+        UserWarning: Cannot determine sign of symbolic expression, using 0 instead.
         0
         sage: assume(a > 0)
         sage: sign_symbolic(a)
@@ -231,7 +231,7 @@ def sign_symbolic(value) -> int:
     if expr < 0:
         return -1
 
-    warnings.warn("Cannot determine sign of symbolic expression, using ``0`` instead.")
+    warnings.warn("Cannot determine sign of symbolic expression, using 0 instead.")
     return 0
 
 
@@ -329,6 +329,12 @@ class SignVector(SageObject):
     def support(self) -> list[int]:
         r"""
         Return a list of indices where the sign vector is nonzero.
+
+        .. SEEALSO::
+
+            - :meth:`zero_support`
+            - :meth:`positive_support`
+            - :meth:`negative_support`
 
         EXAMPLES::
 
@@ -493,11 +499,18 @@ class SignVector(SageObject):
         OUTPUT:
 
         Composition of this sign vector with ``other``.
+        Two sign vectors are harmonious if there are no separating elements.
+
+        .. SEEALSO::
+
+            - :meth:`compose`
+            - :meth:`is_harmonious_to`
+            - :meth:`separating_elements`
 
         .. NOTE::
 
-            This method is more efficient than - :meth:`compose`.
-            However, it does not check whether the sign vectors are harmonious.
+            This method is more efficient than :meth:`compose`
+            but requires the sign vectors to be harmonious.
 
         EXAMPLES::
 
