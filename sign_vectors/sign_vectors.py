@@ -364,6 +364,22 @@ class SignVector(SageObject):
             [1, 4]
         """
         return list(~self._support())
+    
+    @property
+    def _zero_support(self) -> FrozenBitset:
+        r"""
+        Return a list of indices where the sign vector is zero.
+
+        EXAMPLES::
+
+            sage: from sign_vectors import *
+            sage: X = sign_vector("-0+-0")
+            sage: X
+            (-0+-0)
+            sage: X.zero_support()
+            [1, 4]
+        """
+        return ~self._support()
 
     def positive_support(self) -> list[int]:
         r"""
