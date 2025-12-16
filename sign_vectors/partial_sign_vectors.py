@@ -1027,8 +1027,55 @@ class PartialSignVector(SageObject):
             return set(sv.to_sign_vector() for sv in res)
         
         return res
-        
+    
+    def lower_closure(self) -> PartialSignVector:
+        r"""
+        Return the lower closure of the partial sign vector.
 
+        EXAMPLES::
+
+            sage: from sign_vectors.partial_sign_vectors import *
+            sage: X = partial_sign_vector("pn+-*/")
+            sage: X.lower_closure()
+            (pnpn**)
+
+        """
+        return self.__class__(self._negative_support,
+                               ~ FrozenBitset([], capacity=self.length()),
+                               self._positive_support)
+    
+    def upper_closure(self) -> PartialSignVector:
+        r"""
+        Return the upper closure of the partial sign vector.
+
+        EXAMPLES::
+
+            sage: from sign_vectors.partial_sign_vectors import *
+            sage: X = partial_sign_vector("pn+-*/")
+            sage: X.upper_closure()
+            (**+-*/)
+
+        """
+        return self.__class__(self._negative_support | self._zero_support,
+                               self._zero_support,
+                               self._positive_support | self._zero_support)
+    
+    def closure(self) -> PartialSignVector:
+       r"""
+        Return the closure of the partial sign vector.
+
+        EXAMPLES::
+
+            sage: from sign_vectors.partial_sign_vectors import *
+            sage: X = partial_sign_vector("pn+-*/")
+            sage: X.closure()
+            (**pn**)
+
+        """
+       return self.__class__(self._negative_support | self._zero_support,
+                               ~ FrozenBitset([], capacity=self.length()),
+                               self._positive_support | self._zero_support) 
+        
     def __hash__(self) -> int:
         r"""Return the hash value of this partial sign vector."""
 

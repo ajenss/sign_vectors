@@ -1119,6 +1119,63 @@ class SignVector(SageObject):
         r"""Return the hash value of this sign vector."""
 
         return hash((self._positive_support, self._negative_support))
+    
+    def to_partial_sign_vector(self) -> PartialSignVector:
+        r"""Return the sign vector as the partial sign vector."""
+        from sign_vectors.partial_sign_vectors import PartialSignVector
+        return PartialSignVector(self._negative_support, self._zero_support, self._positive_support)
+     
+    def lower_closure(self) -> PartialSignVector:
+        r"""
+        Return the lower closure of the partial sign vector.
+
+        EXAMPLES::
+
+            sage: from sign_vectors import *
+            sage: X = sign_vector("+-00+-")
+            sage: X.lower_closure()
+            (pn00pn)
+
+        """
+        from sign_vectors.partial_sign_vectors import PartialSignVector
+        return PartialSignVector(self._negative_support,
+                               ~ FrozenBitset([], capacity=self.length()),
+                               self._positive_support)
+    
+    def upper_closure(self) -> PartialSignVector:
+        r"""
+        Return the upper closure of the sign vector.
+
+        EXAMPLES::
+
+            sage: from sign_vectors import *
+            sage: X = sign_vector("+-00+-")
+            sage: X.upper_closure()
+            (+-**+-)
+
+        """
+        from sign_vectors.partial_sign_vectors import PartialSignVector
+        return PartialSignVector(self._negative_support | self._zero_support,
+                               self._zero_support,
+                               self._positive_support | self._zero_support)
+    
+    def closure(self) -> PartialSignVector:
+       r"""
+        Return the closure of the sign vector.
+
+        EXAMPLES::
+
+            sage: from sign_vectors import *
+            sage: X = sign_vector("+-00+-")
+            sage: X.closure()
+            (pn**pn)
+
+        """
+       from sign_vectors.partial_sign_vectors import PartialSignVector
+       return PartialSignVector(self._negative_support | self._zero_support,
+                               ~ FrozenBitset([], capacity=self.length()),
+                               self._positive_support | self._zero_support) 
+        
 
     @classmethod
     def zero(cls, length: int) -> SignVector:
